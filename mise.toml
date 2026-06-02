@@ -1,0 +1,71 @@
+[settings]
+activate_aggressive = true
+experimental = true
+
+[settings.python]
+uv_venv_auto = true
+
+[tools]
+hk = "latest"
+python = { version = "latest", uv = true }
+ruff = "latest"
+ty = "latest"
+uv = "latest"
+
+[tasks.bootstrap]
+run = [
+	"hk install --mise",
+	{ task = "update-hk-import" },
+	"uv sync"
+]
+
+[tasks.update]
+alias = ["upd"]
+run = [
+	"mise upgrade",
+	{ task = "update-hk-import" },
+	"uv sync --upgrade"
+]
+
+[tasks.upgrade]
+alias = ["upg"]
+run = [
+	"mise upgrade --bump",
+	{ task = "update-hk-import" },
+	"uv sync --upgrade",
+]
+
+[tasks.run]
+alias = ["prep", "r"]
+run = "uv run prepper"
+
+[tasks.build]
+alias = "b"
+run = "uv build"
+
+[tasks.test]
+alias = "t"
+run = "echo 'no tests yet'"
+
+[tasks.check]
+alias = ["chk", "lint"]
+run = "hk check --all"
+
+[tasks.fix]
+alias = ["format"]
+run = "hk fix --all"
+
+[tasks.clean]
+run = [
+	"rm -rf dist",
+	"rm -rf build",
+	"rm -rf .ruff_cache",
+	"find . -name '__pycache__' -type d -prune -exec rm -rf {} +",
+]
+
+[tasks.nuke]
+run = [
+	"uv cache prune",
+	"rm -rf .venv",
+	{ task = "clean" },
+]
