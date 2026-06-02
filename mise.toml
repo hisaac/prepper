@@ -16,16 +16,27 @@ shellcheck = "latest"
 shfmt = "latest"
 skate = "latest"
 
+[hooks]
+postinstall = { task = "bootstrap" }
+
 [tasks.bootstrap]
-run = ["hk install --mise", { task = "update-hk-import" }]
+run = [
+  "hk install --mise",
+  { task = "update-hk-import" },
+  "brew bundle install",
+]
 
 [tasks.update]
 alias = ["upd"]
-run = ["mise upgrade", { task = "update-hk-import" }]
+run = ["mise upgrade", { task = "update-hk-import" }, "brew bundle upgrade"]
 
 [tasks.upgrade]
 alias = ["upg"]
-run = ["mise upgrade --bump", { task = "update-hk-import" }]
+run = [
+  "mise upgrade --bump",
+  { task = "update-hk-import" },
+  "brew bundle upgrade",
+]
 
 [tasks.update-hk-import]
 run = "scripts/update-hk-import.bash"
