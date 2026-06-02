@@ -5,11 +5,16 @@ experimental = true
 [settings.python]
 uv_venv_auto = true
 
+[env]
+_.path = './bin'
+
 [tools]
+gum = "latest"
 hk = "latest"
 pkl = "latest"
 shellcheck = "latest"
 shfmt = "latest"
+skate = "latest"
 
 [tasks.bootstrap]
 run = ["hk install --mise", { task = "update-hk-import" }]
