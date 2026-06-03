@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:prepper}",
+            "name": "Debug prepper",
+            "target": "prepper",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug prepper"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:prepper}",
+            "name": "Release prepper",
+            "target": "prepper",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release prepper"
+        }
+    ]
+}

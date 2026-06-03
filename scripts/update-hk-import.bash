@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-# shellcheck source=../src/lib/common.bash
-source "$(cd "$(dirname "$(dirname "${BASH_SOURCE[0]}")")" && pwd)/src/lib/common.bash" || exit 1
-
 # Example import headers to be updated:
 # amends "package://github.com/jdx/hk/releases/download/v1.34.0/hk@1.34.0#/Config.pkl"
 # import "package://github.com/jdx/hk/releases/download/v1.34.0/hk@1.34.0#/Builtins.pkl"
+
+# shellcheck source=./lib/common.bash
+source "$(dirname "$(realpath -- "${BASH_SOURCE[0]}")")/lib/common.bash" || exit 1
 
 function main() {
 	local -r config_path="${PROJECT_ROOT}/hk.pkl"

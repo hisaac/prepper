@@ -2,41 +2,27 @@
 activate_aggressive = true
 experimental = true
 
-[settings.python]
-uv_venv_auto = true
-
-[env]
-_.path = './bin'
-
 [tools]
-gum = "latest"
 hk = "latest"
 pkl = "latest"
 shellcheck = "latest"
 shfmt = "latest"
-skate = "latest"
+swift = "latest"
+tombi = "latest"
 
 [hooks]
 postinstall = { task = "bootstrap" }
 
 [tasks.bootstrap]
-run = [
-  "hk install --mise",
-  { task = "update-hk-import" },
-  "brew bundle install",
-]
+run = ["hk install --mise", { task = "update-hk-import" }]
 
 [tasks.update]
 alias = ["upd"]
-run = ["mise upgrade", { task = "update-hk-import" }, "brew bundle upgrade"]
+run = ["mise upgrade", { task = "update-hk-import" }]
 
 [tasks.upgrade]
 alias = ["upg"]
-run = [
-  "mise upgrade --bump",
-  { task = "update-hk-import" },
-  "brew bundle upgrade",
-]
+run = ["mise upgrade --bump", { task = "update-hk-import" }]
 
 [tasks.update-hk-import]
 run = "scripts/update-hk-import.bash"
@@ -48,3 +34,14 @@ run = "hk check --all"
 [tasks.fix]
 alias = ["format"]
 run = "hk fix --all"
+
+[tasks.clean]
+run = ["killall -q Xcode || true", "rm -rf .build"]
+
+[tasks.nuke]
+depends = "clean"
+run = [
+  "rm -rf $HOME/Library/Caches/org.swift.swiftpm",
+  "rm -rf $HOME/Library/Developer/Xcode/DerivedData",
+  "rm -rf $HOME/Library/org.swift.swiftpm",
+]
