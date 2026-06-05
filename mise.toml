@@ -36,7 +36,7 @@ alias = ["format"]
 run = "hk fix --all"
 
 [tasks.clean]
-run = ["killall -q Xcode || true", "rm -rf .build"]
+run = ["killall -q Xcode || true", "rm -rf .build", "rm -rf DerivedData"]
 
 [tasks.nuke]
 depends = "clean"

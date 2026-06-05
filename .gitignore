@@ -2,6 +2,7 @@
 .env
 
 # Swift
+.derived-data-log-*
 .netrc
 .swiftpm/configuration/registries.json
 .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
