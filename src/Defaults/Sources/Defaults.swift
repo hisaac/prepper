@@ -1,7 +1,7 @@
 import Foundation
 
 public enum Defaults {
-	static func allDomains() -> [String: URL] {
+	static func allDomains() -> [String: [URL]] {
 		guard let cfDictionary = _CFPreferencesCopyApplicationMap(
 			kCFPreferencesCurrentUser,
 			kCFPreferencesAnyHost,
@@ -13,12 +13,12 @@ public enum Defaults {
 			return [:]
 		}
 
-		return dictionary.compactMapValues { $0.first }
+		return dictionary
 	}
 }
 
 @_silgen_name("_CFPreferencesCopyApplicationMap")
-func _CFPreferencesCopyApplicationMap(
+private func _CFPreferencesCopyApplicationMap(
 	_ userName: CFString,
 	_ hostName: CFString,
 ) -> Unmanaged<CFDictionary>?
@@ -28,7 +28,7 @@ enum DefaultsHost {
 	case host(String)
 }
 
-enum DefaultUser {
+enum DefaultsUser {
 	case current
 	case host(String)
 }

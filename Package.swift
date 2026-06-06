@@ -36,7 +36,7 @@ let package = Package(
 			name: "DefaultsTests",
 			dependencies: ["Defaults"],
 			path: "src/Defaults/Tests"
-		)
+		),
 	],
 	swiftLanguageModes: [.v6]
 )
