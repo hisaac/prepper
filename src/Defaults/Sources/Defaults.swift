@@ -1,10 +1,13 @@
 import Foundation
 
 public enum Defaults {
-	static func allDomains() -> [String: [URL]] {
+	public static func allDomains(
+		user: DefaultsUser = .current,
+		host: DefaultsHost = .current,
+	) -> [String: [URL]] {
 		guard let cfDictionary = _CFPreferencesCopyApplicationMap(
-			kCFPreferencesCurrentUser,
-			kCFPreferencesAnyHost,
+			user.cfString,
+			host.cfString,
 		)?.takeRetainedValue() else {
 			return [:]
 		}
@@ -22,16 +25,6 @@ private func _CFPreferencesCopyApplicationMap(
 	_ userName: CFString,
 	_ hostName: CFString,
 ) -> Unmanaged<CFDictionary>?
-
-enum DefaultsHost {
-	case current
-	case host(String)
-}
-
-enum DefaultsUser {
-	case current
-	case host(String)
-}
 
 //Command line interface to a user's defaults.
 //Syntax:
