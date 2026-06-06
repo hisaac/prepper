@@ -9,6 +9,7 @@ enum PlistValue {
 	case data(Data)
 	case int(Int)
 	case float(Float)
+	case double(Double)
 	case bool(Bool)
 	case date(Date)
 	case array([PlistValue])
@@ -23,9 +24,10 @@ extension PlistValue {
 
 		case CFNumberGetTypeID():
 			let number = cfValue as! NSNumber
-			if number.objCType.pointee == UInt8(ascii: "f")
-				|| number.objCType.pointee == UInt8(ascii: "d") {
+			if number.objCType.pointee == UInt8(ascii: "f") {
 				self = .float(number.floatValue)
+			} else if number.objCType.pointee == UInt8(ascii: "d") {
+				self = .double(number.doubleValue)
 			} else {
 				self = .int(number.intValue)
 			}
