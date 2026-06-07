@@ -51,4 +51,27 @@ extension PlistValue {
 			throw PlistValueError.unsupportedType(CFGetTypeID(cfValue))
 		}
 	}
+
+	var cfPropertyList: CFPropertyList {
+		switch self {
+		case .string(let value):
+			return value as CFPropertyList
+		case .data(let value):
+			return value as CFPropertyList
+		case .int(let value):
+			return value as CFPropertyList
+		case .float(let value):
+			return value as CFPropertyList
+		case .double(let value):
+			return value as CFPropertyList
+		case .bool(let value):
+			return value as CFPropertyList
+		case .date(let value):
+			return value as CFPropertyList
+		case .array(let values):
+			return values.map(\.cfPropertyList) as CFPropertyList
+		case .dict(let values):
+			return values.mapValues(\.cfPropertyList) as CFPropertyList
+		}
+	}
 }

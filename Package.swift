@@ -6,26 +6,19 @@ let package = Package(
 	name: "prepper",
 	platforms: [.macOS(.v26)],
 	products: [
-		.executable(name: "prepper", targets: ["prepper"]),
+		.executable(name: "prepper", targets: ["PrepperCLI"]),
 		.library(name: "Defaults", targets: ["Defaults"]),
 	],
 	dependencies: [
 		.package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.8.1"),
-		.package(url: "https://github.com/swiftlang/swift-subprocess.git", from: "0.5.0"),
 	],
 	targets: [
 		.executableTarget(
-			name: "prepper",
+			name: "PrepperCLI",
 			dependencies: [
 				.product(name: "ArgumentParser", package: "swift-argument-parser"),
-				.product(name: "Subprocess", package: "swift-subprocess"),
 			],
-			path: "src/prepper/Sources"
-		),
-		.testTarget(
-			name: "prepperTests",
-			dependencies: ["prepper"],
-			path: "src/prepper/Tests"
+			path: "src/PrepperCLI/Sources"
 		),
 
 		.target(
@@ -33,9 +26,9 @@ let package = Package(
 			path: "src/Defaults/Sources"
 		),
 		.testTarget(
-			name: "DefaultsTests",
+			name: "DefaultsIntegrationTests",
 			dependencies: ["Defaults"],
-			path: "src/Defaults/Tests"
+			path: "src/Defaults/IntegrationTests"
 		),
 	],
 	swiftLanguageModes: [.v6]

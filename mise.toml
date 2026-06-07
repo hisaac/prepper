@@ -1,6 +1,7 @@
 [settings]
 activate_aggressive = true
 experimental = true
+lockfile = true
 
 [tools]
 hk = "latest"
