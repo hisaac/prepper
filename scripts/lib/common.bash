@@ -28,7 +28,7 @@ function log_info() {
 	echo -e "[${script_name}] ${message}"
 }
 
-function lob_warning() {
+function log_warning() {
 	local -r message="${1:-}"
 	echo -e "[${script_name}] WARNING: ${message}"
 }

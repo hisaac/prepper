@@ -128,6 +128,9 @@ url = "https://github.com/mvdan/sh/releases/download/v3.13.1/shfmt_v3.13.1_windo
 version = "6.3.2"
 backend = "core:swift"
 
+[tools.swift."platforms.macos-arm64"]
+checksum = "blake3:4e63539bec7a19dc72c6bc92138bbb6cc93b57769bcce9652b2116dd6c9aa35a"
+
 [[tools.tombi]]
 version = "1.1.2"
 backend = "aqua:tombi-toml/tombi"
