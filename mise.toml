@@ -17,6 +17,14 @@ postinstall = { task = "bootstrap" }
 [tasks.bootstrap]
 run = ["hk install --mise", { task = "update-hk-import" }]
 
+[tasks.build]
+alias = "b"
+run = "swift build"
+
+[tasks.test]
+alias = "t"
+run = "swift test"
+
 [tasks.update]
 alias = ["upd"]
 run = ["mise upgrade", { task = "update-hk-import" }]
